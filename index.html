@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ProfilCardRegi</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap Icons -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: #f4f4f9;
+      }
+
+      .profile-card {
+        width: 350px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        overflow: hidden;
+        transition: transform 0.3s ease;
+      }
+
+      .profile-card:hover {
+        transform: scale(1.05);
+      }
+
+      .profile-card img {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+      }
+
+      .profile-card .info {
+        padding: 20px;
+      }
+
+      .profile-card .info h2 {
+        margin-bottom: 10px;
+        font-size: 1.5rem;
+        color: #333;
+      }
+
+      .profile-card .info p {
+        font-size: 1rem;
+        color: #777;
+        margin-bottom: 20px;
+      }
+
+      .profile-card .social-icons {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-bottom: 20px;
+      }
+
+      .profile-card .social-icons a {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #0077b6;
+        color: white;
+        font-size: 1.2rem;
+        border-radius: 50%;
+        text-decoration: none;
+        transition: background 0.3s ease, transform 0.3s ease;
+      }
+
+      .profile-card .social-icons a:hover {
+        background: #005f87;
+        transform: scale(1.3); /* Membesarkan ikon saat kursor mendekat */
+      }
+
+      /* Modal Style */
+      .modal-content {
+        border-radius: 10px;
+      }
+
+      .modal-header {
+        border-bottom: 2px solid #0077b6;
+      }
+
+      .modal-body {
+        font-size: 1.1rem;
+        color: #555;
+      }
+
+      .modal-body p {
+        margin-bottom: 20px;
+      }
+
+      .modal-footer {
+        border-top: 2px solid #0077b6;
+      }
+
+      #copy-status {
+        font-size: 1rem;
+        color: green;
+        font-weight: bold;
+        display: none;
+      }
+
+      #copy-email-btn {
+        transition: background 0.3s ease;
+      }
+
+      #copy-email-btn:hover {
+        background-color: #005f87;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="profile-card">
+      <img src="regi (2).png" alt="Profile Cover" />
+      <div class="info">
+        <h2>Regi Ridwan Gunawan</h2>
+        <p>Information Technology (IT) student</p>
+        <div class="social-icons">
+          <a
+            href="https://www.linkedin.com/in/regi-ridwan-gunawan"
+            target="_blank"
+            title="LinkedIn"
+          >
+            <i class="bi bi-linkedin"></i>
+          </a>
+          <a
+            href="#"
+            title="Email"
+            data-bs-toggle="modal"
+            data-bs-target="#emailModal"
+          >
+            <i class="bi bi-envelope"></i>
+          </a>
+          <a
+            href="https://www.facebook.com/reegi.reegi.779?mibextid=rS40aB7S9Ucbxw6v"
+            target="_blank"
+            title="Facebook"
+          >
+            <i class="bi bi-facebook"></i>
+          </a>
+          <a
+            href="https://www.instagram.com/__giw04?igsh=NHNjY2x5bGpic2U3"
+            target="_blank"
+            title="Instagram"
+          >
+            <i class="bi bi-instagram"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Email Information -->
+    <div
+      class="modal fade"
+      id="emailModal"
+      tabindex="-1"
+      aria-labelledby="emailModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="emailModalLabel">Kontak Email</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p>
+              Untuk menghubungi saya, Anda dapat mengirim email ke alamat
+              berikut:
+            </p>
+            <p>
+              <strong id="email-address">regiridwan220@gmail.com</strong>
+            </p>
+            <button
+              id="copy-email-btn"
+              class="btn btn-primary"
+              onclick="copyEmail()"
+            >
+              Salin Email
+            </button>
+            <p id="copy-status" style="color: green; display: none">
+              Email berhasil disalin!
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Tutup
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      function copyEmail() {
+        var emailText = document.getElementById("email-address").textContent;
+        navigator.clipboard.writeText(emailText).then(
+          function () {
+            var copyStatus = document.getElementById("copy-status");
+            copyStatus.style.display = "block";
+            setTimeout(function () {
+              copyStatus.style.display = "none";
+            }, 2000);
+          },
+          function (err) {
+            console.error("Gagal menyalin email: ", err);
+          }
+        );
+      }
+    </script>
+  </body>
+</html>
